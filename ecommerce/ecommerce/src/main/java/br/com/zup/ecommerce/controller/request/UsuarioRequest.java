@@ -5,14 +5,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.validator.ValorUnico;
 
 public class UsuarioRequest {
 
 	@NotBlank
-	// @Size(min=3, max=20)
 	private String usuario;
 	@NotBlank
-	@Email
+	@Email @ValorUnico(domainClass = Usuario.class, message = "Email deve ser único", fieldName = "email")
 	private String login;
 	@NotBlank
 	@Size(min = 6)
