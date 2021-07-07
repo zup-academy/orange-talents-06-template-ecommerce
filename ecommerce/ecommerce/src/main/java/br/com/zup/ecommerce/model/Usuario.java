@@ -27,7 +27,7 @@ public class Usuario {
 	public Usuario(String usuario, String email, String senha) {
 		this.usuario = usuario;
 		this.email = email;
-		this.senha = new BCryptPasswordEncoder().encode(senha);
+		this.senha = criarSenha(senha);
 		this.dataCadastro = LocalDateTime.now();
 	}
 
@@ -49,6 +49,10 @@ public class Usuario {
 
 	public LocalDateTime getDataCadastro() {
 		return dataCadastro;
+	}
+	
+	private String criarSenha(String senha) {
+		return new BCryptPasswordEncoder().encode(senha);
 	}
 
 }
