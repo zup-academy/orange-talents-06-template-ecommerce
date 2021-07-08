@@ -7,10 +7,6 @@ public class CategoriaResponse {
 	private String nome;
 	private List<String> nomeCategoria;
 	
-	private CategoriaResponse() {
-		
-	}
-
 	public CategoriaResponse(Long id, String nome, List<String> nomeCategoria) {
 		super();
 		this.id = id;
