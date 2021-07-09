@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Categoria {
 
@@ -19,6 +21,17 @@ public class Categoria {
 	@ManyToOne
 	@JoinColumn(name = "categoria_mae")
 	private Categoria vinculoCategoria;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "produto_id")
+	private Produto produto;
+	
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name = "produto_id") private Produto produto;
+	 */
 
 	public Categoria() {
 	}
@@ -38,6 +51,10 @@ public class Categoria {
 
 	public Categoria getVinculoCategoria() {
 		return vinculoCategoria;
+	}
+	
+	public Produto getProduto() {
+		return produto;
 	}
 
 }

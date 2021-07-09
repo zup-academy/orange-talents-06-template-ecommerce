@@ -41,7 +41,9 @@ public class EcommerceExceptionHandler extends ResponseEntityExceptionHandler {
 		List<Erro> erros = criarListaDeErros(ex.getBindingResult());
 		return handleExceptionInternal(ex, erros, headers, status, request);
 	}
-
+	
+	
+	
 	private List<Erro> criarListaDeErros(BindingResult bindingResult) {
 		List<Erro> erros = new ArrayList<>();
 		for(FieldError filedErro: bindingResult.getFieldErrors()) {
