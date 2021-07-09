@@ -7,4 +7,4 @@ CREATE TABLE caracteristica(
 
 INSERT INTO caracteristica ( marca, modelo, quantidade_embalagem) values ('MARCA 01','MODELO 01',1);
 INSERT INTO caracteristica ( marca, modelo, quantidade_embalagem) values ('MARCA 02','MODELO 02',1);
-INSERT INTO caracteristica ( marca, modelo, quantidade_embalagem) values ('MARCA 03','MODELO 03',2);
+INSERT INTO caracteristica ( marcgit a, modelo, quantidade_embalagem) values ('MARCA 03','MODELO 03',2);
