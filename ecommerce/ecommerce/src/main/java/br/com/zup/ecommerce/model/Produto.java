@@ -2,13 +2,18 @@ package br.com.zup.ecommerce.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 
 @Entity
 public class Produto {
@@ -22,6 +27,10 @@ public class Produto {
 	private String descricao;
 	private LocalDateTime registro;
 
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+
 	@OneToOne
 	@JoinColumn(name = "caracteristica_id")
 	private CaracteristicasProduto caracteristicas;
@@ -30,16 +39,16 @@ public class Produto {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
-	/*
-	 * @OneToMany(mappedBy = "produto") private List<Categoria> categoria;
-	 */
+	@OneToMany(mappedBy = "produto")
+	private List<Imagem> imagens;
 
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao,
-			CaracteristicasProduto caracteristicas, Categoria categoria) {
+			CaracteristicasProduto caracteristicas, Categoria categoria, List<Imagem> imagens,
+			Usuario usuario) {
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
@@ -47,6 +56,8 @@ public class Produto {
 		this.registro = LocalDateTime.now();
 		this.caracteristicas = caracteristicas;
 		this.categoria = categoria;
+		this.imagens = imagens;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
@@ -79,6 +90,19 @@ public class Produto {
 
 	public Categoria getCategoria() {
 		return categoria;
+	}
+
+	public List<Imagem> getImagens() {
+		return imagens;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public ProdutoResponse converterModel() {
+		return new ProdutoResponse(this.nome, this.valor, this.quantidade, this.descricao, caracteristicas, categoria,
+				imagens, usuario);
 	}
 
 }

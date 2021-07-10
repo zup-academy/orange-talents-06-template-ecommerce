@@ -6,4 +6,5 @@ import br.com.zup.ecommerce.model.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 
+	
 }
