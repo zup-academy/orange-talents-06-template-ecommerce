@@ -8,46 +8,48 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.zup.ecommerce.controller.request.UsuarioRequest;
+import br.com.zup.ecommerce.controller.request.ImagemRequest;
+import br.com.zup.ecommerce.controller.response.ImagemResponse;
+import br.com.zup.ecommerce.model.Imagem;
+import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.repository.ImagemRepository;
+import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/imagens")
+public class ImagemController {
+
+	@Autowired
+	private ImagemRepository imagemRepository;
+
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@GetMapping
-	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
-	}
-
-	@PostMapping
-	public ResponseEntity<Usuario> criar(@Valid @RequestBody UsuarioRequest request, HttpServletResponse response) {
-		Usuario usuario = request.toModel();
-		Usuario usuarioSalvo = usuarioRepository.save(usuario);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(usuarioSalvo.getId())
-				.toUri();
-		return ResponseEntity.created(uri).body(usuarioSalvo);
+	private List<Imagem> listar() {
+		return imagemRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> buscarPeloId(@PathVariable Long id) {
-		Optional<Usuario> usuario = usuarioRepository.findById(id);
-		return usuario.isPresent() ? ResponseEntity.ok(usuario.get()) : ResponseEntity.notFound().build();
+	public ResponseEntity<ImagemResponse> buscarPeloCodigo(@PathVariable Long id) {
+		Optional<Imagem> imagemRecuperado = imagemRepository.findById(id);
+		Imagem imagemSalva = imagemRecuperado.get();
+		ImagemResponse resposta = imagemSalva.converteModel();
+		return imagemRecuperado.isPresent() ? ResponseEntity.ok(resposta) : ResponseEntity.notFound().build();
 	}
 
 }
