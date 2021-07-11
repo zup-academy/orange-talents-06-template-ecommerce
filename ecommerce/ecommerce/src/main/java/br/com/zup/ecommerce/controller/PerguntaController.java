@@ -23,6 +23,7 @@ import br.com.zup.ecommerce.controller.response.PerguntaResponse;
 import br.com.zup.ecommerce.model.Pergunta;
 import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.repository.Emails;
 import br.com.zup.ecommerce.repository.PerguntaRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
@@ -49,7 +50,7 @@ public class PerguntaController {
 		}
 		return response;
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<PerguntaResponse> criar(@Valid @RequestBody PerguntaRequest request,
 			HttpServletResponse response) {
@@ -59,7 +60,7 @@ public class PerguntaController {
 		Pergunta perguntaSalvo = perguntaRepository.save(pergunta);
 
 		PerguntaResponse responsePergunta = perguntaSalvo.ConverteResponse();
-		enviaEmail();
+		emails.novaPergunta(novaPergunta);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 				.buildAndExpand(responsePergunta.getId()).toUri();
 		return ResponseEntity.created(uri).body(responsePergunta);
