@@ -45,6 +45,9 @@ public class Produto {
 	@OneToMany(mappedBy = "produto")
 	private List<Opiniao> opinioes;
 	
+	@OneToMany(mappedBy = "produto")
+	private List<Pergunta> perguntas;
+	
 	
 	public Produto() {
 		// TODO Auto-generated constructor stub
@@ -102,6 +105,14 @@ public class Produto {
 
 	public Usuario getUsuario() {
 		return usuario;
+	}
+	
+	public List<Pergunta> getPerguntas() {
+		return perguntas;
+	}
+	
+	public List<Opiniao> getOpinioes() {
+		return opinioes;
 	}
 
 	public ProdutoResponse converterModel() {
