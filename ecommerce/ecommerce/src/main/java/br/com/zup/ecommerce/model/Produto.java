@@ -41,7 +41,11 @@ public class Produto {
 
 	@OneToMany(mappedBy = "produto")
 	private List<Imagem> imagens;
-
+	
+	@OneToMany(mappedBy = "produto")
+	private List<Opiniao> opinioes;
+	
+	
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}

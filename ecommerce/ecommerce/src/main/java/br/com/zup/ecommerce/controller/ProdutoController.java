@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.zup.ecommerce.controller.request.CaracteristicaRequest;
-import br.com.zup.ecommerce.controller.request.ImagemRequest;
 import br.com.zup.ecommerce.controller.request.ProdutoRequest;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.model.CaracteristicasProduto;
