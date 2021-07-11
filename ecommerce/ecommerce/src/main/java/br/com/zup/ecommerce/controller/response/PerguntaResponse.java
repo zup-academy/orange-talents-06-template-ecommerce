@@ -32,6 +32,9 @@ public class PerguntaResponse {
 		this.criacao = criacao;
 		this.usuarioProduto = usuarioProduto;
 	}
+	
+	
+	
 
 	public Long getId() {
 		return id;

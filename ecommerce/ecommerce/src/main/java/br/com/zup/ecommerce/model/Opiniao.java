@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.zup.ecommerce.controller.response.OpiniaoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 
 @Entity
 public class Opiniao {
@@ -61,9 +62,9 @@ public class Opiniao {
 	}
 
 	
-	public OpiniaoResponse converteOpinicao(Opiniao opiniaoSalvo, ProdutoResponse produtoResponse) {
+	public OpiniaoResponse converteOpinicao(Opiniao opiniaoSalvo, ProdutoResponse produtoResponse, UsuarioResponse usuarioResponse) {
 		// TODO Auto-generated method stub
-		return new OpiniaoResponse(this.id, this.nota, this.descricao, produtoResponse, this.usuario);
+		return new OpiniaoResponse(this.id, this.nota, this.descricao, produtoResponse, usuarioResponse);
 	}
 
 }

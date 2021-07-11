@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.zup.ecommerce.controller.request.OpiniaoRequest;
 import br.com.zup.ecommerce.controller.response.OpiniaoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 import br.com.zup.ecommerce.model.Opiniao;
 import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
@@ -50,9 +51,9 @@ public class OpiniaoController {
 		Produto produto = recuperaProduto(request.getProduto());
 		Opiniao opiniao = request.toModel(usuario, produto);
 		Opiniao opiniaoSalvo = opiniaoRepository.save(opiniao);
-		
-		ProdutoResponse produtoResponse = produto.converterModel();
-		OpiniaoResponse responseOpiniao = opiniaoSalvo.converteOpinicao(opiniaoSalvo, produtoResponse);
+		UsuarioResponse usuarioResponse = produto.getUsuario().ConverteResponse();
+		ProdutoResponse produtoResponse = produto.converterModel(usuarioResponse);
+		OpiniaoResponse responseOpiniao = opiniaoSalvo.converteOpinicao(opiniaoSalvo, produtoResponse, usuarioResponse);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(responseOpiniao.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(responseOpiniao);

@@ -3,8 +3,6 @@ package br.com.zup.ecommerce.controller.request;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.zup.ecommerce.model.Pergunta;
 import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;

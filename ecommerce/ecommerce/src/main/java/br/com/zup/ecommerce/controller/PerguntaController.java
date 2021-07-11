@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,6 @@ import br.com.zup.ecommerce.controller.response.PerguntaResponse;
 import br.com.zup.ecommerce.model.Pergunta;
 import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
-import br.com.zup.ecommerce.repository.Emails;
 import br.com.zup.ecommerce.repository.PerguntaRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
@@ -60,7 +58,7 @@ public class PerguntaController {
 		Pergunta perguntaSalvo = perguntaRepository.save(pergunta);
 
 		PerguntaResponse responsePergunta = perguntaSalvo.ConverteResponse();
-		emails.novaPergunta(novaPergunta);
+
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
 				.buildAndExpand(responsePergunta.getId()).toUri();
 		return ResponseEntity.created(uri).body(responsePergunta);

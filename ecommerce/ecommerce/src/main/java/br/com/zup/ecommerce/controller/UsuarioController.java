@@ -1,6 +1,7 @@
 package br.com.zup.ecommerce.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.zup.ecommerce.controller.request.UsuarioRequest;
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 import br.com.zup.ecommerce.model.Usuario;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
 
@@ -31,8 +33,13 @@ public class UsuarioController {
 	private UsuarioRepository usuarioRepository;
 
 	@GetMapping
-	public List<Usuario> listar() {
-		return usuarioRepository.findAll();
+	public List<UsuarioResponse> listar() {
+		List<UsuarioResponse> response = new ArrayList<>(); 
+		List<Usuario> usuarioRetorno = usuarioRepository.findAll();
+		for (Usuario usuario : usuarioRetorno) {
+			response.add(usuario.ConverteResponse());
+		}
+		 return response;
 	}
 
 	@PostMapping

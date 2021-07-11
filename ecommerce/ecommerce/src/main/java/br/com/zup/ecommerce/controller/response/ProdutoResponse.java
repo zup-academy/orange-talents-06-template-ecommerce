@@ -6,7 +6,6 @@ import java.util.List;
 import br.com.zup.ecommerce.model.CaracteristicasProduto;
 import br.com.zup.ecommerce.model.Categoria;
 import br.com.zup.ecommerce.model.Imagem;
-import br.com.zup.ecommerce.model.Usuario;
 
 public class ProdutoResponse {
 
@@ -17,11 +16,10 @@ public class ProdutoResponse {
 	private CaracteristicasProduto caracteristica;
 	private Categoria categoria;
 	private List<Imagem> imagem;
-	private Usuario usuario;
-	
+	private UsuarioResponse usuario;
+
 	public ProdutoResponse(String nome, BigDecimal valor, Integer quantidade, String descricao,
-			CaracteristicasProduto caracteristica, Categoria categoria, List<Imagem> imagem,
-			Usuario usuario) {
+			CaracteristicasProduto caracteristica, Categoria categoria, List<Imagem> imagem, UsuarioResponse usuario) {
 		super();
 		this.nome = nome;
 		this.valor = valor;
@@ -32,30 +30,37 @@ public class ProdutoResponse {
 		this.imagem = imagem;
 		this.usuario = usuario;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public BigDecimal getValor() {
 		return valor;
 	}
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
+
 	public String getDescricao() {
 		return descricao;
 	}
+
 	public CaracteristicasProduto getCaracteristica() {
 		return caracteristica;
 	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
+
 	public List<Imagem> getImagem() {
 		return imagem;
 	}
-	public Usuario getUsuario() {
+
+	public UsuarioResponse getUsuario() {
 		return usuario;
 	}
-	
-	
+
 }

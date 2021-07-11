@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 
 @Entity
 public class Produto {
@@ -115,9 +116,9 @@ public class Produto {
 		return opinioes;
 	}
 
-	public ProdutoResponse converterModel() {
+	public ProdutoResponse converterModel(UsuarioResponse usuarioResponse) {
 		return new ProdutoResponse(this.nome, this.valor, this.quantidade, this.descricao, caracteristicas, categoria,
-				imagens, usuario);
+				imagens, usuarioResponse);
 	}
 
 }

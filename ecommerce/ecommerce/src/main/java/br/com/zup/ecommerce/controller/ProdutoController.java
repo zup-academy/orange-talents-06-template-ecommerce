@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.zup.ecommerce.controller.request.CaracteristicaRequest;
 import br.com.zup.ecommerce.controller.request.ProdutoRequest;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 import br.com.zup.ecommerce.model.CaracteristicasProduto;
 import br.com.zup.ecommerce.model.Categoria;
 import br.com.zup.ecommerce.model.Imagem;
@@ -67,7 +68,8 @@ public class ProdutoController {
 	public ResponseEntity<ProdutoResponse> buscarPeloId(@PathVariable Long id) {
 		Optional<Produto> produtoRecuperado = produtoRepository.findById(id);
 		Produto produto = produtoRecuperado.get();
-		ProdutoResponse response = produto.converterModel();
+		UsuarioResponse usuarioResponse = produto.getUsuario().ConverteResponse();
+		ProdutoResponse response = produto.converterModel(usuarioResponse);
 		return produtoRecuperado.isPresent() ? ResponseEntity.ok(response) : ResponseEntity.notFound().build();
 	}
 
@@ -82,8 +84,8 @@ public class ProdutoController {
 		Produto produto = request.toModel(caracteristica, categoria, usuario);
 		Produto produtoSalvo = produtoRepository.save(produto);
 		salvaImagem(request.getImagems(), produtoSalvo);
-
-		ProdutoResponse response1 = produtoSalvo.converterModel();
+		UsuarioResponse usuarioResponse = produto.getUsuario().ConverteResponse();
+		ProdutoResponse response1 = produtoSalvo.converterModel(usuarioResponse);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(produtoSalvo.getId())
 				.toUri();
 		return ResponseEntity.created(uri).body(response1);

@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.com.zup.ecommerce.controller.response.UsuarioResponse;
+
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -53,6 +55,10 @@ public class Usuario {
 	
 	private String criarSenha(String senha) {
 		return new BCryptPasswordEncoder().encode(senha);
+	}
+
+	public UsuarioResponse ConverteResponse() {
+		return new UsuarioResponse(this.usuario, this.email);
 	}
 
 }
