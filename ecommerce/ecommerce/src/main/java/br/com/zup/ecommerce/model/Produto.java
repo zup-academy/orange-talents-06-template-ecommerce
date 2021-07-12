@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.controller.response.ProdutoResumoResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
 
 @Entity
@@ -21,7 +22,6 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String nome;
 	private BigDecimal valor;
 	private Integer quantidade;
@@ -119,6 +119,10 @@ public class Produto {
 	public ProdutoResponse converterModel(UsuarioResponse usuarioResponse) {
 		return new ProdutoResponse(this.nome, this.valor, this.quantidade, this.descricao, caracteristicas, categoria,
 				imagens, usuarioResponse);
+	}
+	
+	public ProdutoResumoResponse converterModelResumo(UsuarioResponse usuarioResponse) {
+		return new ProdutoResumoResponse(this.nome, this.descricao, this.caracteristicas, usuarioResponse);
 	}
 
 }
