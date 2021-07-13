@@ -3,9 +3,9 @@ package br.com.zup.ecommerce.controller.response;
 import java.math.BigDecimal;
 import java.util.List;
 
-import br.com.zup.ecommerce.model.CaracteristicasProduto;
-import br.com.zup.ecommerce.model.Categoria;
-import br.com.zup.ecommerce.model.Imagem;
+import br.com.zup.ecommerce.model.produtos.CaracteristicasProduto;
+import br.com.zup.ecommerce.model.produtos.Categoria;
+import br.com.zup.ecommerce.model.produtos.Imagem;
 
 public class ProdutoResponse {
 

@@ -1,12 +1,12 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.carrinho;
 
-public enum Plataforma {
+public enum PlataformaEnum {
 	Paypal("paypal"),
 	Pagseguro("pagseguro");
 	
 	public String tipoPagamento;
 	
-	Plataforma(String valor) {
+	PlataformaEnum(String valor) {
 		tipoPagamento = valor;
 	}
 	

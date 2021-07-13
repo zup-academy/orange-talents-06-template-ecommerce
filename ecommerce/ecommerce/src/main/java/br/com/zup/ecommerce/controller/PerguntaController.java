@@ -19,9 +19,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.zup.ecommerce.controller.request.PerguntaRequest;
 import br.com.zup.ecommerce.controller.response.PerguntaResponse;
-import br.com.zup.ecommerce.model.Pergunta;
-import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.produtos.Pergunta;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.repository.PerguntaRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;

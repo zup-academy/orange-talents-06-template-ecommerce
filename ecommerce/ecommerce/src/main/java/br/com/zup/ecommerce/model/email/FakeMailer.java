@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.email;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

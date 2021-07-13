@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.produtos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.zup.ecommerce.controller.response.OpiniaoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
+import br.com.zup.ecommerce.model.Usuario;
 
 @Entity
 public class Opiniao {

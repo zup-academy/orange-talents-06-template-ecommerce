@@ -1,6 +1,6 @@
 package br.com.zup.ecommerce.controller.response;
 
-import br.com.zup.ecommerce.model.Produto;
+import br.com.zup.ecommerce.model.produtos.Produto;
 
 public class ImagemResponse {
 	

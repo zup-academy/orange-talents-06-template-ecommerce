@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.carrinho;
 
 import java.math.BigDecimal;
 
@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoVendaResponse;
+import br.com.zup.ecommerce.model.produtos.Produto;
 
 @Entity
 @Table(name = "venda")

@@ -6,9 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import br.com.zup.ecommerce.model.Pergunta;
-import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.produtos.Pergunta;
+import br.com.zup.ecommerce.model.produtos.Produto;
 
 public class PerguntaResponse {
 

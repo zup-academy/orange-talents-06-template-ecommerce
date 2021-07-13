@@ -3,8 +3,8 @@ package br.com.zup.ecommerce.controller.request;
 import java.math.BigDecimal;
 
 import br.com.zup.ecommerce.controller.response.ProdutoVendaResponse;
-import br.com.zup.ecommerce.model.Produto;
-import br.com.zup.ecommerce.model.ProdutoVenda;
+import br.com.zup.ecommerce.model.carrinho.ProdutoVenda;
+import br.com.zup.ecommerce.model.produtos.Produto;
 
 public class ProdutoVendaRequest {
 	private Integer quantidade;

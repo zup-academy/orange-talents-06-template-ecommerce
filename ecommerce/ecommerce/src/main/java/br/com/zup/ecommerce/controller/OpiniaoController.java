@@ -20,9 +20,9 @@ import br.com.zup.ecommerce.controller.request.OpiniaoRequest;
 import br.com.zup.ecommerce.controller.response.OpiniaoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
-import br.com.zup.ecommerce.model.Opiniao;
-import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.produtos.Opiniao;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.repository.OpiniaoRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
@@ -32,10 +32,10 @@ import br.com.zup.ecommerce.repository.UsuarioRepository;
 public class OpiniaoController {
 	@Autowired
 	private OpiniaoRepository opiniaoRepository;
-	
+
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
 	@Autowired
 	private ProdutoRepository produtoRepository;
 
@@ -43,9 +43,9 @@ public class OpiniaoController {
 	public List<Opiniao> listar() {
 		return opiniaoRepository.findAll();
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<OpiniaoResponse> criar(@Valid @RequestBody OpiniaoRequest request, 
+	public ResponseEntity<OpiniaoResponse> criar(@Valid @RequestBody OpiniaoRequest request,
 			HttpServletResponse response) {
 		Usuario usuario = recuperaUsuario(request.getUsuario());
 		Produto produto = recuperaProduto(request.getProduto());
@@ -54,20 +54,19 @@ public class OpiniaoController {
 		UsuarioResponse usuarioResponse = produto.getUsuario().ConverteResponse();
 		ProdutoResponse produtoResponse = produto.converterModel(usuarioResponse);
 		OpiniaoResponse responseOpiniao = opiniaoSalvo.converteOpinicao(opiniaoSalvo, produtoResponse, usuarioResponse);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(responseOpiniao.getId())
-				.toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(responseOpiniao.getId()).toUri();
 		return ResponseEntity.created(uri).body(responseOpiniao);
 	}
-	
+
 	public Usuario recuperaUsuario(Long id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		return usuario.get();
 	}
-	
+
 	public Produto recuperaProduto(Long id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		return produto.get();
 	}
-	
-	
+
 }

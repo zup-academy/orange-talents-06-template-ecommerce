@@ -3,9 +3,9 @@ package br.com.zup.ecommerce.controller.request;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import br.com.zup.ecommerce.model.Pergunta;
-import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.produtos.Pergunta;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.validator.ExistsId;
 
 public class PerguntaRequest {

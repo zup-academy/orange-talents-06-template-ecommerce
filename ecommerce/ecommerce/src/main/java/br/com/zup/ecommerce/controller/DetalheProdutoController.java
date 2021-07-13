@@ -16,9 +16,9 @@ import br.com.zup.ecommerce.controller.response.DetalheProdutoResponse;
 import br.com.zup.ecommerce.controller.response.PerguntaDetalheResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
-import br.com.zup.ecommerce.model.Opiniao;
-import br.com.zup.ecommerce.model.Pergunta;
-import br.com.zup.ecommerce.model.Produto;
+import br.com.zup.ecommerce.model.produtos.Opiniao;
+import br.com.zup.ecommerce.model.produtos.Pergunta;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.repository.OpiniaoRepository;
 import br.com.zup.ecommerce.repository.PerguntaRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
@@ -33,8 +33,6 @@ public class DetalheProdutoController {
 	private OpiniaoRepository opiniaoRepository;
 	@Autowired
 	private PerguntaRepository perguntaRepository;
-	
-
 
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalheProdutoResponse> buscarPeloId(@PathVariable Long id) {
@@ -76,9 +74,9 @@ public class DetalheProdutoController {
 	}
 
 	public float CalculaMedia(List<DetalheOpiniaoResponse> listaOpinioes) {
-		int soma=0;
+		int soma = 0;
 		int cont = 0;
-		
+
 		if (listaOpinioes.isEmpty())
 			return 0;
 		for (DetalheOpiniaoResponse opiniao : listaOpinioes) {

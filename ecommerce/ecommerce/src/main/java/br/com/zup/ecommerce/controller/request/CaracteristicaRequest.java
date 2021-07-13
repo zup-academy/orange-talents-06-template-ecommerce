@@ -1,6 +1,6 @@
 package br.com.zup.ecommerce.controller.request;
 
-import br.com.zup.ecommerce.model.CaracteristicasProduto;
+import br.com.zup.ecommerce.model.produtos.CaracteristicasProduto;
 
 public class CaracteristicaRequest {
 	private String marca;

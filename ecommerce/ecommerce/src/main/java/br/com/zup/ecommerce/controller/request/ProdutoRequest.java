@@ -11,11 +11,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.zup.ecommerce.model.CaracteristicasProduto;
-import br.com.zup.ecommerce.model.Categoria;
-import br.com.zup.ecommerce.model.Imagem;
-import br.com.zup.ecommerce.model.Produto;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.produtos.CaracteristicasProduto;
+import br.com.zup.ecommerce.model.produtos.Categoria;
+import br.com.zup.ecommerce.model.produtos.Imagem;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.validator.ExistsId;
 
 public class ProdutoRequest {

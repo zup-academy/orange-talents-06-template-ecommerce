@@ -23,11 +23,10 @@ import br.com.zup.ecommerce.controller.request.ProdutoVendaRequest;
 import br.com.zup.ecommerce.controller.response.CriarPedidoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoVendaResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
-import br.com.zup.ecommerce.model.CriarPedido;
-import br.com.zup.ecommerce.model.Opiniao;
-import br.com.zup.ecommerce.model.Produto;
-import br.com.zup.ecommerce.model.ProdutoVenda;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.carrinho.CriarPedido;
+import br.com.zup.ecommerce.model.carrinho.ProdutoVenda;
+import br.com.zup.ecommerce.model.produtos.Produto;
 import br.com.zup.ecommerce.repository.CriarPedidoRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;
@@ -71,28 +70,26 @@ public class CriarPedidoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<CriarPedidoResponse> criar(@Valid @RequestBody CriarPedidoRequest request, 
+	public ResponseEntity<CriarPedidoResponse> criar(@Valid @RequestBody CriarPedidoRequest request,
 			HttpServletResponse response) {
 
 		Usuario usuarioRecuperado = recuperaUsuario(request.getComprador());
-				
+
 		List<ProdutoVenda> produtosVendaLista = new ArrayList<>();
-		List<ProdutoVendaResponse> produtoVendaResponse= new ArrayList<>();
+		List<ProdutoVendaResponse> produtoVendaResponse = new ArrayList<>();
 		List<ProdutoVendaRequest> produtoVendaModel = request.getVendas();
-		
-		
+
 		for (ProdutoVendaRequest produtoVenda : produtoVendaModel) {
 			Produto produto = recuperaProduto(produtoVenda.getIdProduto());
 			ProdutoVenda produtoModel = produtoVenda.toModel(produtoVenda.getQuantidade(), produto);
 			produtosVendaLista.add(produtoModel);
 		}
-				
+
 		CriarPedido criarPedidoModel = request.ToModel(usuarioRecuperado, produtosVendaLista);
 		CriarPedido opiniaoSalvo = criarPedidoRepository.save(criarPedidoModel);
-		
+
 		UsuarioResponse usuarioResponse = opiniaoSalvo.getComprador().ConverteResponse();
-		
-		
+
 		List<ProdutoVendaResponse> listaProdutoVendaResponse = new ArrayList<>();
 		List<ProdutoVenda> produtosVendas = produtosVendaLista;
 
@@ -102,11 +99,12 @@ public class CriarPedidoController {
 
 			listaProdutoVendaResponse.add(converte);
 		}
-				
-		CriarPedidoResponse responsePedidoResponse = opiniaoSalvo.converteModel(usuarioResponse, listaProdutoVendaResponse);
-		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(responsePedidoResponse.getId())
-				.toUri();
+
+		CriarPedidoResponse responsePedidoResponse = opiniaoSalvo.converteModel(usuarioResponse,
+				listaProdutoVendaResponse);
+
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+				.buildAndExpand(responsePedidoResponse.getId()).toUri();
 		return ResponseEntity.created(uri).body(responsePedidoResponse);
 	}
 
@@ -119,8 +117,5 @@ public class CriarPedidoController {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		return produto.get();
 	}
-	
-	
-	
 
 }

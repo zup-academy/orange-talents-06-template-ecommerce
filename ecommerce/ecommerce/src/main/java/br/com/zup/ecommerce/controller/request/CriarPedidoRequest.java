@@ -2,11 +2,9 @@ package br.com.zup.ecommerce.controller.request;
 
 import java.util.List;
 
-import br.com.zup.ecommerce.controller.response.ProdutoVendaResponse;
-import br.com.zup.ecommerce.controller.response.UsuarioResponse;
-import br.com.zup.ecommerce.model.CriarPedido;
-import br.com.zup.ecommerce.model.ProdutoVenda;
 import br.com.zup.ecommerce.model.Usuario;
+import br.com.zup.ecommerce.model.carrinho.CriarPedido;
+import br.com.zup.ecommerce.model.carrinho.ProdutoVenda;
 
 public class CriarPedidoRequest {
 

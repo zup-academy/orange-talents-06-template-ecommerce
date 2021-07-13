@@ -2,7 +2,7 @@ package br.com.zup.ecommerce.controller.request;
 
 import javax.validation.constraints.NotBlank;
 
-import br.com.zup.ecommerce.model.Categoria;
+import br.com.zup.ecommerce.model.produtos.Categoria;
 import br.com.zup.ecommerce.validator.ValorUnico;
 
 public class CategoriaRequest {
@@ -10,7 +10,7 @@ public class CategoriaRequest {
 	@NotBlank
 	@ValorUnico(domainClass = Categoria.class, fieldName = "nome", message = "Nome da categoria deve ser único.")
 	private String nome;
-	
+
 	private Categoria categoria;
 
 	public CategoriaRequest() {

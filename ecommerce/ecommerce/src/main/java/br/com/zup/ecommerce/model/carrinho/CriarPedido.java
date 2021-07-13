@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.carrinho;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import br.com.zup.ecommerce.controller.response.CriarPedidoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoVendaResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
+import br.com.zup.ecommerce.model.Usuario;
 
 @Entity
 @Table(name = "pedido")

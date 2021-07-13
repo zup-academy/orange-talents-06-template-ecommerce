@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.ecommerce.controller.response.ImagemResponse;
-import br.com.zup.ecommerce.model.Imagem;
+import br.com.zup.ecommerce.model.produtos.Imagem;
 import br.com.zup.ecommerce.repository.ImagemRepository;
 import br.com.zup.ecommerce.repository.ProdutoRepository;
 import br.com.zup.ecommerce.repository.UsuarioRepository;

@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.produtos;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import br.com.zup.ecommerce.controller.response.ProdutoResponse;
 import br.com.zup.ecommerce.controller.response.ProdutoResumoResponse;
 import br.com.zup.ecommerce.controller.response.UsuarioResponse;
+import br.com.zup.ecommerce.model.Usuario;
 
 @Entity
 public class Produto {
@@ -42,21 +43,19 @@ public class Produto {
 
 	@OneToMany(mappedBy = "produto")
 	private List<Imagem> imagens;
-	
+
 	@OneToMany(mappedBy = "produto")
 	private List<Opiniao> opinioes;
-	
+
 	@OneToMany(mappedBy = "produto")
 	private List<Pergunta> perguntas;
-	
-	
+
 	public Produto() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao,
-			CaracteristicasProduto caracteristicas, Categoria categoria, List<Imagem> imagens,
-			Usuario usuario) {
+			CaracteristicasProduto caracteristicas, Categoria categoria, List<Imagem> imagens, Usuario usuario) {
 		this.nome = nome;
 		this.valor = valor;
 		this.quantidade = quantidade;
@@ -107,11 +106,11 @@ public class Produto {
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public List<Pergunta> getPerguntas() {
 		return perguntas;
 	}
-	
+
 	public List<Opiniao> getOpinioes() {
 		return opinioes;
 	}
@@ -120,7 +119,7 @@ public class Produto {
 		return new ProdutoResponse(this.nome, this.valor, this.quantidade, this.descricao, caracteristicas, categoria,
 				imagens, usuarioResponse);
 	}
-	
+
 	public ProdutoResumoResponse converterModelResumo(UsuarioResponse usuarioResponse) {
 		return new ProdutoResumoResponse(this.nome, this.descricao, this.caracteristicas, usuarioResponse);
 	}

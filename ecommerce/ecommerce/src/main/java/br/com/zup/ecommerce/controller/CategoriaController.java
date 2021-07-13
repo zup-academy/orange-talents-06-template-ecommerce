@@ -18,32 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.zup.ecommerce.controller.request.CategoriaRequest;
-import br.com.zup.ecommerce.controller.response.CategoriaResponse;
-import br.com.zup.ecommerce.model.Categoria;
+import br.com.zup.ecommerce.model.produtos.Categoria;
 import br.com.zup.ecommerce.repository.CategoriaRepository;
 
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
-	
+
 	@Autowired
 	private CategoriaRepository categoriaRepository;
-	
 
 	@GetMapping
 	public List<Categoria> listar() {
 		return categoriaRepository.findAll();
 	}
-	
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Categoria> criar(@Valid @RequestBody CategoriaRequest request, HttpServletResponse response) {
 		Categoria categoria = request.toModel();
-		Categoria categoriaSalvo = categoriaRepository.save(categoria); 
+		Categoria categoriaSalvo = categoriaRepository.save(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-				.buildAndExpand(categoriaSalvo.getId()).toUri(); 
+				.buildAndExpand(categoriaSalvo.getId()).toUri();
 		return ResponseEntity.created(uri).body(categoriaSalvo);
-			
+
 	}
 
 }

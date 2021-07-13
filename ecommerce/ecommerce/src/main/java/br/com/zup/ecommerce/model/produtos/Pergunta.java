@@ -1,4 +1,4 @@
-package br.com.zup.ecommerce.model;
+package br.com.zup.ecommerce.model.produtos;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import br.com.zup.ecommerce.controller.response.PerguntaResponse;
-import br.com.zup.ecommerce.controller.response.ProdutoResponse;
+import br.com.zup.ecommerce.model.Usuario;
 
 @Entity
 public class Pergunta {
